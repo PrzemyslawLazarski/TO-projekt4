@@ -1,13 +1,13 @@
 package lazarski.commands;
 
-import lazarski.filesystem.BaseComponent;
+import lazarski.filesystem.BaseNode;
 import lazarski.filesystem.Context;
 import lazarski.filesystem.Directory;
-import lazarski.PathResolver;
+import lazarski.PathMapper;
 
 import java.util.List;
 
-public class MV implements Command {
+public class MvCommand implements Command {
 
     private List<String> parameters;
 
@@ -31,18 +31,18 @@ public class MV implements Command {
         String firstParam = parameters.get(0);
         String secondParam = parameters.get(1);
 
-        BaseComponent toMove = PathResolver.resolvePath(firstParam, context);
+        BaseNode toMove = PathMapper.resolvePath(firstParam, context);
 
         boolean changeName = false;
-        BaseComponent destination;
+        BaseNode destination;
         String newName = "";
 
         try {
-            destination = PathResolver.resolvePath(secondParam, context);
+            destination = PathMapper.resolvePath(secondParam, context);
         } catch (RuntimeException e) {
             String newPath = secondParam.substring(0, secondParam.lastIndexOf("/"));
             newName = secondParam.substring(secondParam.lastIndexOf("/") + 1);
-            destination = PathResolver.resolvePath(newPath, context);
+            destination = PathMapper.resolvePath(newPath, context);
             changeName = true;
         }
         if (destination instanceof Directory directory) {

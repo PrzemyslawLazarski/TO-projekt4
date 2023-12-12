@@ -1,13 +1,13 @@
 package lazarski.commands;
 
-import lazarski.filesystem.BaseComponent;
+import lazarski.filesystem.BaseNode;
 import lazarski.filesystem.Context;
 import lazarski.filesystem.Directory;
-import lazarski.PathResolver;
+import lazarski.PathMapper;
 
 import java.util.List;
 
-public class CD implements Command {
+public class CdCommand implements Command {
 
     private List<String> parameters;
 
@@ -34,7 +34,7 @@ public class CD implements Command {
         } else if (path.equals(".")) {
             context.setCurrent(current);
         } else {
-            BaseComponent destination  = PathResolver.resolvePath(path, context);
+            BaseNode destination  = PathMapper.resolvePath(path, context);
 
             if (destination instanceof Directory directory){
                 context.setCurrent(directory);

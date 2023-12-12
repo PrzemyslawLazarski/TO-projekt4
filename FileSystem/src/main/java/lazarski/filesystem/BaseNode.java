@@ -3,7 +3,7 @@ package lazarski.filesystem;
 import java.util.Objects;
 import java.util.Set;
 
-public class BaseComponent implements FileSystemComponent, Cloneable{
+public class BaseNode implements FileSystemNode, Cloneable{
     protected String name;
     protected Directory parent;
 
@@ -32,7 +32,7 @@ public class BaseComponent implements FileSystemComponent, Cloneable{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BaseComponent that = (BaseComponent) o;
+        BaseNode that = (BaseNode) o;
         return Objects.equals(name, that.name) && Objects.equals(parent, that.parent);
     }
 
@@ -44,9 +44,9 @@ public class BaseComponent implements FileSystemComponent, Cloneable{
     @Override
     public void print(int indent) {
         if (this instanceof Directory) {
-            Set<BaseComponent> children = ((Directory) this).getChildren();
+            Set<BaseNode> children = ((Directory) this).getChildren();
             System.out.println(this.getName() + "/");
-            for (FileSystemComponent child : children) {
+            for (FileSystemNode child : children) {
 
                 for (int i=0; i<indent;i++) {
                     System.out.print("\t");
@@ -62,9 +62,9 @@ public class BaseComponent implements FileSystemComponent, Cloneable{
     }
 
     @Override
-    public BaseComponent clone() {
+    public BaseNode clone() {
         try {
-            BaseComponent clone = (BaseComponent) super.clone();
+            BaseNode clone = (BaseNode) super.clone();
             clone.name = this.name;
             clone.parent = null;
             return clone;

@@ -18,14 +18,14 @@ public class Main {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        root = ExampleDelivery.generateExampleTree();
+        root = Seeder.generateExampleTree();
 
         context.setCurrent(root);
-        CommandCollection commandCollection = ExampleDelivery.generateShell();
+        Commands commandCollection = Seeder.generateShell();
 
-        ConsoleRunner consoleRunner = new ConsoleRunner(
+        AppStarter appStarter = new AppStarter(
                 new Scanner(System.in), context, new Interpreter(commandCollection));
-        consoleRunner.run();
+        appStarter.run();
 //        cmdTree = DefShell.construct(ctx);
 //        dparser = new DefParser(cmdTree);
 //        dparser.doParse();

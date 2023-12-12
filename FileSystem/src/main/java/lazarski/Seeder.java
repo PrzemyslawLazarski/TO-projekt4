@@ -2,10 +2,9 @@ package lazarski;
 
 import lazarski.commands.*;
 import lazarski.filesystem.Directory;
-import lazarski.filesystem.TextFile;
-import lazarski.commands.*;
+import lazarski.filesystem.File;
 
-public abstract class ExampleDelivery {
+public abstract class Seeder {
     public static Directory generateExampleTree(){
         Directory root= new Directory();
         root.setName("root");
@@ -28,11 +27,11 @@ public abstract class ExampleDelivery {
         Directory files = new Directory();
         files.setName("Files");
 
-        TextFile liczby = new TextFile();
+        File liczby = new File();
         liczby.setName("liczby.txt");
         liczby.setContent("1 2 3 4 5 6 7");
 
-        TextFile ala=new TextFile();
+        File ala=new File();
         ala.setName("ala.txt");
         ala.setContent("Ala ma kota");
 
@@ -51,17 +50,17 @@ public abstract class ExampleDelivery {
         return root;
     }
 
-    public static CommandCollection generateShell(){
-        CommandCollection commandCollection = new CommandCollection();
+    public static Commands generateShell(){
+        Commands commandCollection = new Commands();
 
-        Command ls = new LS();
-        Command cd = new CD();
-        Command mkdir = new MKDIR();
-        Command more = new MORE();
-        Command tree = new TREE();
-        Command cp = new CP();
-        Command mv = new MV();
-        Command touch = new TOUCH();
+        Command ls = new LsCommand();
+        Command cd = new CdCommand();
+        Command mkdir = new MkdirCommand();
+        Command more = new MoreCommand();
+        Command tree = new TreeCommand();
+        Command cp = new CpCommand();
+        Command mv = new MvCommand();
+        Command touch = new TouchCommand();
         commandCollection.addCommand(ls);
         commandCollection.addCommand(cd);
         commandCollection.addCommand(mkdir);

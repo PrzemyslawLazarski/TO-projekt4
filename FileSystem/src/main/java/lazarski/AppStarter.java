@@ -5,14 +5,14 @@ import lazarski.filesystem.Context;
 
 import java.util.Scanner;
 
-public class ConsoleRunner {
+public class AppStarter {
     private final Scanner scanner;
     private final Context context;
 
     private final Interpreter interpreter;
 
 
-    public ConsoleRunner(Scanner scanner, Context context, Interpreter interpreter) {
+    public AppStarter(Scanner scanner, Context context, Interpreter interpreter) {
         this.scanner = scanner;
         this.context = context;
         this.interpreter = interpreter;

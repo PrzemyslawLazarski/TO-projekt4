@@ -3,21 +3,21 @@ package lazarski.filesystem;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Directory extends BaseComponent implements Cloneable {
-    private HashSet<BaseComponent> children;
+public class Directory extends BaseNode implements Cloneable {
+    private HashSet<BaseNode> children;
 
     public Directory() {
         this.children = new HashSet<>();
     }
 
-    public void addChild(BaseComponent element) {
+    public void addChild(BaseNode element) {
         if (this.children.contains(element))
             throw new RuntimeException("Element " + element.getName() + " już istnieje w " + this.getPath());
         element.setParent(this);
         this.children.add(element);
     }
 
-    public void removeChild(BaseComponent element) {
+    public void removeChild(BaseNode element) {
         if (!this.children.contains(element))
             throw new RuntimeException("Element " + element.getName() + " nie istnieje w " + this.getPath());
         this.children.remove(element);
@@ -25,12 +25,12 @@ public class Directory extends BaseComponent implements Cloneable {
 
 
 
-    private boolean hasComponent(FileSystemComponent element) {
+    private boolean hasComponent(FileSystemNode element) {
         return children.contains(element);
     }
 
     public boolean hasChildWithName(String name){
-        for (BaseComponent child : children) {
+        for (BaseNode child : children) {
             if(child.getName().equals(name)){
                 return true;
             }
@@ -38,8 +38,8 @@ public class Directory extends BaseComponent implements Cloneable {
         return false;
     }
 
-    public BaseComponent getChildByName(String name){
-        for (BaseComponent child : children) {
+    public BaseNode getChildByName(String name){
+        for (BaseNode child : children) {
             if(child.getName().equals(name)){
                 return child;
             }
@@ -47,7 +47,7 @@ public class Directory extends BaseComponent implements Cloneable {
         return null;
     }
 
-    public Set<BaseComponent> getChildren() {
+    public Set<BaseNode> getChildren() {
         return children;
     }
 
@@ -56,8 +56,8 @@ public class Directory extends BaseComponent implements Cloneable {
     public Directory clone() {
         Directory clone = (Directory) super.clone();
         clone.children = new HashSet<>();
-        for (BaseComponent child : children) {
-            BaseComponent cloned = child.clone();
+        for (BaseNode child : children) {
+            BaseNode cloned = child.clone();
             cloned.setParent(clone);
             clone.getChildren().add(cloned);
         }

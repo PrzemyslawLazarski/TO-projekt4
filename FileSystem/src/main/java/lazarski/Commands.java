@@ -5,7 +5,7 @@ import lazarski.commands.Command;
 import java.util.HashMap;
 import java.util.Optional;
 
-public class CommandCollection {
+public class Commands {
     private final HashMap<String, Command> commands;
 
     {

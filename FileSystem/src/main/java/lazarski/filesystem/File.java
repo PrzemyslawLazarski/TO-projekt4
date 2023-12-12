@@ -1,6 +1,6 @@
 package lazarski.filesystem;
 
-public class TextFile extends BaseComponent implements Cloneable {
+public class File extends BaseNode implements Cloneable {
     private String content;
 
     public String getContent() {
@@ -15,8 +15,8 @@ public class TextFile extends BaseComponent implements Cloneable {
     }
 
     @Override
-    public TextFile clone() {
-        TextFile clone = (TextFile) super.clone();
+    public File clone() {
+        File clone = (File) super.clone();
         clone.setContent(this.content);
         return clone;
     }

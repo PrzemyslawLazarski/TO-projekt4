@@ -1,10 +1,10 @@
 package lazarski.filesystem;
 
-public interface FileSystemComponent extends Cloneable {
+public interface FileSystemNode extends Cloneable {
     void setName(String name);
     String getName();
 
-    FileSystemComponent getParent();
+    FileSystemNode getParent();
     void setParent(Directory param);
 
     String getPath();

@@ -2,12 +2,12 @@ package lazarski.commands;
 
 import lazarski.filesystem.Context;
 import lazarski.filesystem.Directory;
-import lazarski.filesystem.BaseComponent;
+import lazarski.filesystem.BaseNode;
 
 import java.util.List;
 import java.util.Set;
 
-public class MKDIR implements Command {
+public class MkdirCommand implements Command {
 
     private List<String> parameters;
 
@@ -26,7 +26,7 @@ public class MKDIR implements Command {
 
         String name = this.parameters.get(0);
 
-        Set<BaseComponent> children = context.getCurrent().getChildren();
+        Set<BaseNode> children = context.getCurrent().getChildren();
 
         Directory directory = new Directory();
         directory.setParent(context.getCurrent());

@@ -5,7 +5,7 @@ import lazarski.filesystem.Directory;
 
 import java.util.List;
 
-public class TREE implements Command {
+public class TreeCommand implements Command {
 
     private List<String> parameters;
     @Override

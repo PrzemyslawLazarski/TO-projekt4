@@ -1,12 +1,12 @@
 package lazarski.commands;
 
 import lazarski.filesystem.Context;
-import lazarski.filesystem.BaseComponent;
+import lazarski.filesystem.BaseNode;
 
 import java.util.List;
 import java.util.Set;
 
-public class LS implements Command {
+public class LsCommand implements Command {
 
     private List<String> parameters;
     @Override
@@ -21,10 +21,10 @@ public class LS implements Command {
 
     @Override
     public void execute(Context context) {
-        Set<BaseComponent> children = context.getCurrent().getChildren();
+        Set<BaseNode> children = context.getCurrent().getChildren();
 
         int i=0;
-        for (BaseComponent child : children) {
+        for (BaseNode child : children) {
             System.out.printf("%10s",child.getName());
             i++;
             if (i%5 ==0 ){

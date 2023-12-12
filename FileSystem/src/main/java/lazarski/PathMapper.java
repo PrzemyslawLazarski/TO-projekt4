@@ -1,13 +1,13 @@
 package lazarski;
 
-import lazarski.filesystem.BaseComponent;
+import lazarski.filesystem.BaseNode;
 import lazarski.filesystem.Context;
 import lazarski.filesystem.Directory;
-import lazarski.filesystem.TextFile;
+import lazarski.filesystem.File;
 
-public abstract class PathResolver {
+public abstract class PathMapper {
 
-    public static BaseComponent resolvePath(String path, Context context) {
+    public static BaseNode resolvePath(String path, Context context) {
         Directory current;
         if (path.equals(".")){
             return context.getCurrent();
@@ -34,10 +34,10 @@ public abstract class PathResolver {
                     }
                 } else {
                     if (current.hasChildWithName(split[i])) {
-                        BaseComponent next = current.getChildByName(split[i]);
+                        BaseNode next = current.getChildByName(split[i]);
                         if (next instanceof Directory) {
                             current = (Directory) next;
-                        } else if (next instanceof TextFile && i == (split.length - 1)) {
+                        } else if (next instanceof File && i == (split.length - 1)) {
                             return next;
                         }
                         else {
@@ -60,10 +60,10 @@ public abstract class PathResolver {
                 }
             } else {
                 if (current.hasChildWithName(split[i])) {
-                    BaseComponent next = current.getChildByName(split[i]);
+                    BaseNode next = current.getChildByName(split[i]);
                     if (next instanceof Directory) {
                         current = (Directory) next;
-                    } else if (next instanceof TextFile && i == (split.length - 1)) {
+                    } else if (next instanceof File && i == (split.length - 1)) {
                         return next;
                     }
                     else {

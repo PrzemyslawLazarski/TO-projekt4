@@ -8,9 +8,9 @@ import java.util.Optional;
 
 public class Interpreter {
 
-    private final CommandCollection commands;
+    private final Commands commands;
 
-    public Interpreter(CommandCollection commands) {
+    public Interpreter(Commands commands) {
         this.commands = commands;
     }
 

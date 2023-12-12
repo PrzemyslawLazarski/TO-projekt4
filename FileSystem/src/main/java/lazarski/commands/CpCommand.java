@@ -1,13 +1,13 @@
 package lazarski.commands;
 
-import lazarski.filesystem.BaseComponent;
+import lazarski.filesystem.BaseNode;
 import lazarski.filesystem.Context;
 import lazarski.filesystem.Directory;
-import lazarski.PathResolver;
+import lazarski.PathMapper;
 
 import java.util.List;
 
-public class CP implements Command {
+public class CpCommand implements Command {
     private List<String> parameters;
 
     @Override
@@ -30,10 +30,10 @@ public class CP implements Command {
         String firstParam = parameters.get(0);
         String secondParam = parameters.get(1);
 
-        BaseComponent toCopy = PathResolver.resolvePath(firstParam, context);
-        BaseComponent destination = PathResolver.resolvePath(secondParam, context);
+        BaseNode toCopy = PathMapper.resolvePath(firstParam, context);
+        BaseNode destination = PathMapper.resolvePath(secondParam, context);
 
-        BaseComponent copied = toCopy.clone();
+        BaseNode copied = toCopy.clone();
 
 
         if (destination instanceof Directory directory){

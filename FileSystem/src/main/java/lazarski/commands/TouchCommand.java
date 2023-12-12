@@ -1,13 +1,12 @@
 package lazarski.commands;
 
-import lazarski.PathResolver;
-import lazarski.filesystem.BaseComponent;
+import lazarski.filesystem.BaseNode;
 import lazarski.filesystem.Context;
 import lazarski.filesystem.Directory;
 
 import java.util.List;
 
-public class TOUCH implements Command {
+public class TouchCommand implements Command {
     private List<String> parameters;
 
     @Override
@@ -37,7 +36,7 @@ public class TOUCH implements Command {
         }
 
         // Create a new file (assuming BaseComponent has setName method)
-        BaseComponent newFile = new BaseComponent();
+        BaseNode newFile = new BaseNode();
         newFile.setName(fileName);
         newFile.setParent(currentDirectory);
 
